@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Order {
+    private static final int MIN_ORDER_LIMIT = 1;
+    private static final int MAX_ORDER_LIMIT = 20;
     private final List<MenuInfo> menuInfos;
 
     private Order(List<MenuInfo> menuInfos) {
@@ -22,6 +24,7 @@ public class Order {
                 .peek(Order::validateExistMenu)
                 .map(Order::createMenuInfo)
                 .collect(Collectors.toList());
+        validateOrderCount(orderMenuInfos);
         return new Order(orderMenuInfos);
     }
 
@@ -34,6 +37,13 @@ public class Order {
     private static void validateExistMenu(String[] menuInfo) {
         String name = menuInfo[0];
         if (!Menu.isContains(name)) {
+            throw new IllegalArgumentException(ErrorMessage.ORDER_ERROR);
+        }
+    }
+
+    private static void validateOrderCount(List<MenuInfo> orderMenuInfos) {
+        int orderCount = orderMenuInfos.size();
+        if (orderCount < MIN_ORDER_LIMIT || orderCount > MAX_ORDER_LIMIT) {
             throw new IllegalArgumentException(ErrorMessage.ORDER_ERROR);
         }
     }
