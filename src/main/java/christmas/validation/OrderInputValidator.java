@@ -72,7 +72,12 @@ public class OrderInputValidator {
 
     private static int getDuplicatedCount(String[] orderMenus) {
         return (int) Arrays.stream(orderMenus)
+                .map(OrderInputValidator::extractOrderMenuName)
                 .distinct()
                 .count();
+    }
+
+    private static String extractOrderMenuName(String orderMenu) {
+        return Convertor.splitByHyphen(orderMenu)[0];
     }
 }
