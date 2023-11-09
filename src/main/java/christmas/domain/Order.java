@@ -25,6 +25,7 @@ public class Order {
                 .map(Order::createMenuInfo)
                 .collect(Collectors.toList());
         validateOrderCount(orderMenuInfos);
+        validateOnlyOrderDrink(orderMenuInfos);
         return new Order(orderMenuInfos);
     }
 
@@ -46,6 +47,20 @@ public class Order {
         if (orderCount < MIN_ORDER_LIMIT || orderCount > MAX_ORDER_LIMIT) {
             throw new IllegalArgumentException(ErrorMessage.ORDER_ERROR);
         }
+    }
+
+    private static void validateOnlyOrderDrink(List<MenuInfo> orderMenuInfos) {
+        MenuInfo firstMenuInfo = orderMenuInfos.get(0);
+        if (isOrderOnce(orderMenuInfos) && Menu.isDrinkMenu(firstMenuInfo.name())) {
+            throw new IllegalArgumentException(ErrorMessage.ORDER_ERROR);
+        }
+    }
+
+    private static boolean isOrderOnce(List<MenuInfo> orderMenuInfos) {
+        if (orderMenuInfos.size() == MIN_ORDER_LIMIT) {
+            return true;
+        }
+        return false;
     }
 
     public List<MenuInfo> getMenuInfos() {
