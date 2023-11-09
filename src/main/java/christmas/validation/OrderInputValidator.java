@@ -35,6 +35,7 @@ public class OrderInputValidator {
     private static void validateOrderMenus(String input) {
         String[] orderMenus = Convertor.splitByComma(input);
         validateOrderMenuFormat(orderMenus);
+        validateDuplicateOrder(orderMenus);
     }
 
     private static void validateOrderMenuFormat(String[] orderMenus) {
@@ -61,5 +62,17 @@ public class OrderInputValidator {
 
     private static boolean isNumber(String price) {
         return ONLY_NUMBER.matcher(price).matches();
+    }
+
+    private static void validateDuplicateOrder(String[] orderMenus) {
+        if (getDuplicatedCount(orderMenus) != orderMenus.length) {
+            throw new IllegalArgumentException(ErrorMessage.ORDER_ERROR);
+        }
+    }
+
+    private static int getDuplicatedCount(String[] orderMenus) {
+        return (int) Arrays.stream(orderMenus)
+                .distinct()
+                .count();
     }
 }
