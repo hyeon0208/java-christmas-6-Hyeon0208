@@ -1,10 +1,10 @@
 package christmas.validation;
 
+import christmas.constant.ErrorMessage;
 import java.util.regex.Pattern;
 
 public class VisitDateInputValidator {
-    private static final Pattern ONLY_NUMBER = Pattern.compile(".*[\\d].*");
-    private static final String VISIT_DATE_INPUT_ERROR = "[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.";
+    private static final Pattern ONLY_NUMBER = Pattern.compile("\\d+");
 
     private VisitDateInputValidator() {
     }
@@ -16,13 +16,13 @@ public class VisitDateInputValidator {
 
     private static void validateIsNumber(String input) {
         if (!ONLY_NUMBER.matcher(input).matches()) {
-            throw new IllegalArgumentException(VISIT_DATE_INPUT_ERROR);
+            throw new IllegalArgumentException(ErrorMessage.VISIT_DATE_ERROR);
         }
     }
 
     private static void validateEmpty(String input) {
         if (input.isEmpty()) {
-            throw new IllegalArgumentException(VISIT_DATE_INPUT_ERROR);
+            throw new IllegalArgumentException(ErrorMessage.VISIT_DATE_ERROR);
         }
     }
 }
