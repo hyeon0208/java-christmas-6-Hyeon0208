@@ -18,6 +18,12 @@ public enum Menu {
         this.menuInfos = menuItems;
     }
 
+    public static boolean isDrinkMenu(String name) {
+        return DRINK.menuInfos.stream()
+                .map(MenuInfo::name)
+                .anyMatch(drinkName -> drinkName.equals(name));
+    }
+
     public static boolean isContains(String name) {
         return getMenuNames()
                 .stream()
