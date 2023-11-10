@@ -1,6 +1,7 @@
 package christmas.view;
 
 import christmas.domain.Date;
+import christmas.domain.Order;
 
 public class OutputView {
 
@@ -11,5 +12,14 @@ public class OutputView {
     public void printPreviewOfBenefits(Date date) {
         System.out.printf("12월 %d일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!\n", date.getVisitDate());
         System.out.println();
+    }
+
+    public void printMenu(Order order) {
+        System.out.println("<주문 메뉴>");
+        StringBuilder orderMenus = new StringBuilder();
+        order.getMenuInfos().stream()
+                .map(menuInfo -> String.format("%s %s개", menuInfo.name(), menuInfo.price()))
+                .forEach(menu -> orderMenus.append(menu).append("\n"));
+        System.out.println(orderMenus);
     }
 }
