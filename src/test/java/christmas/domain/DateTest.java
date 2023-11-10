@@ -46,6 +46,22 @@ class DateTest {
         assertThat(specialDay).isTrue();
     }
 
+    @DisplayName("크리스마스 D-day는 25일까지이다.")
+    @Test
+    void isChristmasDdayTest() {
+        // given
+        Date visitDate1 = Date.from("25");
+        Date visitDate2 = Date.from("26");
+
+        // when
+        boolean christmasDday1 = visitDate1.isChristmasDday();
+        boolean christmasDday2 = visitDate2.isChristmasDday();
+
+        // then
+        assertThat(christmasDday1).isTrue();
+        assertThat(christmasDday2).isFalse();
+    }
+
     @DisplayName("방문 날짜를 가져온다.")
     @Test
     void getVisitDateTest() {
