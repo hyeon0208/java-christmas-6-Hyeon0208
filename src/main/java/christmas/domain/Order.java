@@ -37,7 +37,7 @@ public class Order {
 
     private static void validateExistMenu(String[] menuInfo) {
         String name = menuInfo[0];
-        if (!Menu.isContains(name)) {
+        if (!Menu.contains(name)) {
             throw new IllegalArgumentException(ErrorMessage.ORDER_ERROR);
         }
     }
@@ -65,5 +65,13 @@ public class Order {
 
     public List<MenuInfo> getMenuInfos() {
         return Collections.unmodifiableList(menuInfos);
+    }
+
+    public int getTotalOrderPrice() {
+        int sum = menuInfos.stream()
+                .mapToInt(MenuInfo::price)
+                .sum();
+        System.out.println(sum);
+        return sum;
     }
 }

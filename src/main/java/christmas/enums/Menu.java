@@ -4,7 +4,6 @@ import christmas.dto.MenuInfo;
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public enum Menu {
     APPETIZER(addMenus("양송이수프", 6000, "타파스", 5500, "시저샐러드", 8000)),
@@ -24,17 +23,10 @@ public enum Menu {
                 .anyMatch(drinkName -> drinkName.equals(name));
     }
 
-    public static boolean isContains(String name) {
-        return getMenuNames()
-                .stream()
-                .anyMatch(menuName -> menuName.equals(name));
-    }
-
-    private static List<String> getMenuNames() {
+    public static boolean contains(String name) {
         return EnumSet.allOf(Menu.class).stream()
                 .flatMap(menu -> menu.menuInfos.stream())
-                .map(MenuInfo::name)
-                .collect(Collectors.toList());
+                .anyMatch(menuInfo -> menuInfo.nameEquals(name));
     }
 
     private static List<MenuInfo> addMenus(Object... menus) {
