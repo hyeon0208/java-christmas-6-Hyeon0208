@@ -8,15 +8,12 @@ import java.util.regex.Pattern;
 public class OrderInputValidator {
     private static final Pattern ONLY_NUMBER = Pattern.compile("\\d+");
     private static final int ORDER_FORMAT_LIMIT_SIZE = 2;
-    private static final String COMMA = ",";
-    private static final String HYPHEN = "-";
 
     private OrderInputValidator() {
     }
 
     public static void validate(String input) {
         validateEmpty(input);
-        validateComma(input);
         validateOrderMenus(input);
     }
 
@@ -26,28 +23,10 @@ public class OrderInputValidator {
         }
     }
 
-    private static void validateComma(String input) {
-        if (!input.contains(COMMA)) {
-            throw new IllegalArgumentException(ErrorMessage.ORDER_ERROR);
-        }
-    }
-
     private static void validateOrderMenus(String input) {
         String[] orderMenus = Convertor.splitByComma(input);
-        validateHyphen(orderMenus);
         validateOrderMenuFormat(orderMenus);
         validateDuplicateOrder(orderMenus);
-    }
-
-    private static void validateHyphen(String[] orderMenus) {
-        if (isNotContainsHyphen(orderMenus)) {
-            throw new IllegalArgumentException(ErrorMessage.ORDER_ERROR);
-        }
-    }
-
-    private static boolean isNotContainsHyphen(String[] orderMenus) {
-        return Arrays.stream(orderMenus)
-                .anyMatch(orderMenu -> !orderMenu.contains(HYPHEN));
     }
 
     private static void validateOrderMenuFormat(String[] orderMenus) {
