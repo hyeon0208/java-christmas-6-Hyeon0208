@@ -8,12 +8,14 @@ import java.util.List;
 public class Date {
     private static final int START_DATE = 1;
     private static final int END_DATE = 31;
+    private static final int CHRISTMAS_D_DAY = 25;
     private static final List<Integer> SPECIAL_DAYS = List.of(3, 10, 17, 24, 25, 31);
     private final LocalDate date;
 
     private Date(LocalDate date) {
         this.date = date;
     }
+
     public static Date from(String input) {
         int day = Convertor.convertStringToInt(input);
         validateRange(day);
@@ -34,6 +36,13 @@ public class Date {
 
     public boolean isSpecialDay() {
         return SPECIAL_DAYS.contains(date.getDayOfMonth());
+    }
+
+    public boolean isChristmasDday() {
+        if (date.getDayOfMonth() <= CHRISTMAS_D_DAY) {
+            return true;
+        }
+        return false;
     }
 
     public int getVisitDate() {
