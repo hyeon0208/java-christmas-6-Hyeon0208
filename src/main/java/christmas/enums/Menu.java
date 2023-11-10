@@ -38,6 +38,18 @@ public enum Menu {
                 .anyMatch(drinkName -> drinkName.equals(name));
     }
 
+    public static boolean isDessert(String name) {
+        return DESSERT.menuInfos.stream()
+                .map(MenuInfo::name)
+                .anyMatch(drinkName -> drinkName.equals(name));
+    }
+
+    public static boolean isMain(String name) {
+        return MAIN.menuInfos.stream()
+                .map(MenuInfo::name)
+                .anyMatch(drinkName -> drinkName.equals(name));
+    }
+
     private static List<MenuInfo> addMenus(Object... menus) {
         List<MenuInfo> menuItems = new ArrayList<>();
         for (int i = 0; i < menus.length; i += 2) {
