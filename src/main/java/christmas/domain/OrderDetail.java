@@ -18,7 +18,7 @@ public class OrderDetail {
         String name = makeValidatedName(orderInfo);
         int price = Menu.getPriceOf(name);
         int quantity = makeValidatedQuantity(orderInfo);
-        return new OrderDetail(new MenuInfo(name, price), quantity);
+        return new OrderDetail(MenuInfo.of(name, price), quantity);
     }
 
     private static String makeValidatedName(String[] orderInfo) {
@@ -46,7 +46,7 @@ public class OrderDetail {
     }
 
     public String getMenuName() {
-        return menuInfo.name();
+        return menuInfo.getName();
     }
 
     public int getQuantity() {
@@ -54,6 +54,6 @@ public class OrderDetail {
     }
 
     public int getOrderPrice() {
-        return menuInfo.price() * quantity;
+        return menuInfo.getPrice() * quantity;
     }
 }
