@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 public class OrderInputValidator {
     private static final Pattern ONLY_NUMBER = Pattern.compile("\\d+");
-    private static final int MENU_INFO_SIZE = 2;
+    private static final int ORDER_FORMAT_LIMIT_SIZE = 2;
     private static final String COMMA = ",";
     private static final String HYPHEN = "-";
 
@@ -34,19 +34,9 @@ public class OrderInputValidator {
 
     private static void validateOrderMenus(String input) {
         String[] orderMenus = Convertor.splitByComma(input);
+        validateHyphen(orderMenus);
         validateOrderMenuFormat(orderMenus);
         validateDuplicateOrder(orderMenus);
-    }
-
-    private static void validateOrderMenuFormat(String[] orderMenus) {
-        validateHyphen(orderMenus);
-        for (String orderMenu : orderMenus) {
-            String[] menuInfo = Convertor.splitByHyphen(orderMenu);
-            String price = menuInfo[1];
-            if (menuInfo.length != MENU_INFO_SIZE || !isNumber(price)) {
-                throw new IllegalArgumentException(ErrorMessage.ORDER_ERROR);
-            }
-        }
     }
 
     private static void validateHyphen(String[] orderMenus) {
@@ -60,7 +50,24 @@ public class OrderInputValidator {
                 .anyMatch(orderMenu -> !orderMenu.contains(HYPHEN));
     }
 
-    private static boolean isNumber(String price) {
+    private static void validateOrderMenuFormat(String[] orderMenus) {
+        for (String orderInfo : orderMenus) {
+            if (!sameOrderFormatLimitSize(orderInfo) || !checkPriceIsNumber(orderInfo)) {
+                throw new IllegalArgumentException(ErrorMessage.ORDER_ERROR);
+            }
+        }
+    }
+
+    private static boolean sameOrderFormatLimitSize(String orderInfo) {
+        String[] orderDetail = Convertor.splitByHyphen(orderInfo);
+        if (orderDetail.length == ORDER_FORMAT_LIMIT_SIZE) {
+            return true;
+        }
+        return false;
+    }
+
+    private static boolean checkPriceIsNumber(String orderInfo) {
+        String price = extractOrderMenuPrice(orderInfo);
         return ONLY_NUMBER.matcher(price).matches();
     }
 
@@ -72,12 +79,16 @@ public class OrderInputValidator {
 
     private static int getDuplicatedCount(String[] orderMenus) {
         return (int) Arrays.stream(orderMenus)
-                .map(OrderInputValidator::extractOrderMenuName)
+                .map(orderInfo -> extractOrderMenuName(orderInfo))
                 .distinct()
                 .count();
     }
 
-    private static String extractOrderMenuName(String orderMenu) {
-        return Convertor.splitByHyphen(orderMenu)[0];
+    private static String extractOrderMenuName(String orderInfo) {
+        return Convertor.splitByHyphen(orderInfo)[0];
+    }
+
+    private static String extractOrderMenuPrice(String orderInfo) {
+        return Convertor.splitByHyphen(orderInfo)[1];
     }
 }
