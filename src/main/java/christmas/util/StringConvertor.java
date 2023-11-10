@@ -1,10 +1,10 @@
 package christmas.util;
 
-public class Convertor {
+public class StringConvertor {
     private static final String COMMA = ",";
     private static final String HYPHEN = "-";
 
-    private Convertor() {
+    private StringConvertor() {
     }
 
     public static int convertStringToInt(String value) {

@@ -1,6 +1,6 @@
 package christmas.domain;
 
-import christmas.util.Convertor;
+import christmas.util.StringConvertor;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.List;
@@ -17,7 +17,7 @@ public class VisitDate {
     }
 
     public static VisitDate from(String input) {
-        int day = Convertor.convertStringToInt(input);
+        int day = StringConvertor.convertStringToInt(input);
         validateRange(day);
         LocalDate visitDate = LocalDate.of(2023, 12, day);
         return new VisitDate(visitDate);

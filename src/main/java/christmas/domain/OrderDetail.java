@@ -1,7 +1,7 @@
 package christmas.domain;
 
 import christmas.constant.ErrorMessage;
-import christmas.util.Convertor;
+import christmas.util.StringConvertor;
 
 public class OrderDetail {
     private static final int MIN_ORDER_QUANTITY = 1;
@@ -14,7 +14,7 @@ public class OrderDetail {
     }
 
     public static OrderDetail of(String orderMenu) {
-        String[] orderInfo = Convertor.splitByHyphen(orderMenu);
+        String[] orderInfo = StringConvertor.splitByHyphen(orderMenu);
         String name = makeValidatedName(orderInfo);
         int price = Menu.getPriceOf(name);
         int quantity = makeValidatedQuantity(orderInfo);
@@ -34,7 +34,7 @@ public class OrderDetail {
     }
 
     private static int makeValidatedQuantity(String[] orderInfo) {
-        int quantity = Convertor.convertStringToInt(orderInfo[1]);
+        int quantity = StringConvertor.convertStringToInt(orderInfo[1]);
         validateOrderQuantity(quantity);
         return quantity;
     }

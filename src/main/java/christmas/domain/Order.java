@@ -1,7 +1,7 @@
 package christmas.domain;
 
 import christmas.constant.ErrorMessage;
-import christmas.util.Convertor;
+import christmas.util.StringConvertor;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -17,7 +17,7 @@ public class Order {
     }
 
     public static Order from(String input) {
-        List<OrderDetail> orderDetails = Arrays.stream(Convertor.splitByComma(input))
+        List<OrderDetail> orderDetails = Arrays.stream(StringConvertor.splitByComma(input))
                 .map(OrderDetail::of)
                 .collect(Collectors.toList());
         validateTotalOrderCount(orderDetails);

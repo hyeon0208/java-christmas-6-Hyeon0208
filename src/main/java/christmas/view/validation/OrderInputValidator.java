@@ -1,7 +1,7 @@
 package christmas.view.validation;
 
 import christmas.constant.ErrorMessage;
-import christmas.util.Convertor;
+import christmas.util.StringConvertor;
 import java.util.Arrays;
 import java.util.regex.Pattern;
 
@@ -24,7 +24,7 @@ public class OrderInputValidator {
     }
 
     private static void validateOrderMenus(String input) {
-        String[] orderMenus = Convertor.splitByComma(input);
+        String[] orderMenus = StringConvertor.splitByComma(input);
         validateOrderMenuFormat(orderMenus);
         validateDuplicateOrder(orderMenus);
     }
@@ -38,7 +38,7 @@ public class OrderInputValidator {
     }
 
     private static boolean sameOrderFormatLimitSize(String orderInfo) {
-        String[] orderDetail = Convertor.splitByHyphen(orderInfo);
+        String[] orderDetail = StringConvertor.splitByHyphen(orderInfo);
         if (orderDetail.length == ORDER_FORMAT_LIMIT_SIZE) {
             return true;
         }
@@ -64,10 +64,10 @@ public class OrderInputValidator {
     }
 
     private static String extractOrderMenuName(String orderInfo) {
-        return Convertor.splitByHyphen(orderInfo)[0];
+        return StringConvertor.splitByHyphen(orderInfo)[0];
     }
 
     private static String extractOrderMenuPrice(String orderInfo) {
-        return Convertor.splitByHyphen(orderInfo)[1];
+        return StringConvertor.splitByHyphen(orderInfo)[1];
     }
 }
