@@ -9,8 +9,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Order {
-    private static final int MIN_ORDER_TOTAL_COUNT_LIMIT = 1;
-    private static final int MAX_ORDER_TOTAL_COUNT_LIMIT = 20;
+    private static final int MIN_TOTAL_ORDER_COUNT_LIMIT = 1;
+    private static final int MAX_TOTAL_ORDER_COUNT_LIMIT = 20;
     private final List<OrderDetail> orders;
 
     private Order(List<OrderDetail> orders) {
@@ -20,24 +20,16 @@ public class Order {
     public static Order from(String input) {
         List<OrderDetail> orderDetails = Arrays.stream(Convertor.splitByComma(input))
                 .map(Convertor::splitByHyphen)
-                .peek(Order::validateExistMenu)
                 .map(OrderDetail::of)
                 .collect(Collectors.toList());
-        validateOrderCount(orderDetails);
+        validateTotalOrderCount(orderDetails);
         validateOnlyOrderDrink(orderDetails);
         return new Order(orderDetails);
     }
 
-    private static void validateExistMenu(String[] menuInfo) {
-        String name = menuInfo[0];
-        if (!Menu.contains(name)) {
-            throw new IllegalArgumentException(ErrorMessage.ORDER_ERROR);
-        }
-    }
-
-    private static void validateOrderCount(List<OrderDetail> orderDetails) {
+    private static void validateTotalOrderCount(List<OrderDetail> orderDetails) {
         int totalOrderCount = getTotalOrderCount(orderDetails);
-        if (totalOrderCount < MIN_ORDER_TOTAL_COUNT_LIMIT || totalOrderCount > MAX_ORDER_TOTAL_COUNT_LIMIT) {
+        if (totalOrderCount < MIN_TOTAL_ORDER_COUNT_LIMIT || totalOrderCount > MAX_TOTAL_ORDER_COUNT_LIMIT) {
             throw new IllegalArgumentException(ErrorMessage.ORDER_ERROR);
         }
     }
@@ -56,7 +48,7 @@ public class Order {
     }
 
     private static boolean isOrderOnce(List<OrderDetail> orderMenuInfos) {
-        if (orderMenuInfos.size() == MIN_ORDER_COUNT_LIMIT) {
+        if (orderMenuInfos.size() == MIN_TOTAL_ORDER_COUNT_LIMIT) {
             return true;
         }
         return false;
