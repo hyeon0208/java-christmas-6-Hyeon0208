@@ -1,4 +1,4 @@
-package christmas.validation;
+package christmas.view.validation;
 
 import christmas.constant.ErrorMessage;
 import java.util.regex.Pattern;

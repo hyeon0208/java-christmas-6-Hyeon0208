@@ -2,6 +2,7 @@ package christmas.validation;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import christmas.view.validation.OrderInputValidator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
