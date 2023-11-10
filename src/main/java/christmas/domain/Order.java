@@ -1,7 +1,6 @@
 package christmas.domain;
 
 import christmas.constant.ErrorMessage;
-import christmas.dto.MenuInfo;
 import christmas.enums.Menu;
 import christmas.util.Convertor;
 import java.util.Arrays;
@@ -12,27 +11,21 @@ import java.util.stream.Collectors;
 public class Order {
     private static final int MIN_ORDER_LIMIT = 1;
     private static final int MAX_ORDER_LIMIT = 20;
-    private final List<MenuInfo> menuInfos;
+    private final List<OrderDetail> orders;
 
-    private Order(List<MenuInfo> menuInfos) {
-        this.menuInfos = menuInfos;
+    private Order(List<OrderDetail> orders) {
+        this.orders = orders;
     }
 
     public static Order from(String input) {
-        List<MenuInfo> orderMenuInfos = Arrays.stream(Convertor.splitByComma(input))
+        List<OrderDetail> orderDetails = Arrays.stream(Convertor.splitByComma(input))
                 .map(Convertor::splitByHyphen)
                 .peek(Order::validateExistMenu)
-                .map(Order::createMenuInfo)
+                .map(OrderDetail::of)
                 .collect(Collectors.toList());
-        validateOrderCount(orderMenuInfos);
-        validateOnlyOrderDrink(orderMenuInfos);
-        return new Order(orderMenuInfos);
-    }
-
-    private static MenuInfo createMenuInfo(String[] menuInfo) {
-        String name = menuInfo[0];
-        String price = menuInfo[1];
-        return new MenuInfo(name, Convertor.convertStringToInt(price));
+        validateOrderCount(orderDetails);
+        validateOnlyOrderDrink(orderDetails);
+        return new Order(orderDetails);
     }
 
     private static void validateExistMenu(String[] menuInfo) {
@@ -42,36 +35,34 @@ public class Order {
         }
     }
 
-    private static void validateOrderCount(List<MenuInfo> orderMenuInfos) {
-        int orderCount = orderMenuInfos.size();
+    private static void validateOrderCount(List<OrderDetail> orderDetails) {
+        int orderCount = orderDetails.size();
         if (orderCount < MIN_ORDER_LIMIT || orderCount > MAX_ORDER_LIMIT) {
             throw new IllegalArgumentException(ErrorMessage.ORDER_ERROR);
         }
     }
 
-    private static void validateOnlyOrderDrink(List<MenuInfo> orderMenuInfos) {
-        MenuInfo firstMenuInfo = orderMenuInfos.get(0);
-        if (isOrderOnce(orderMenuInfos) && Menu.isDrinkMenu(firstMenuInfo.name())) {
+    private static void validateOnlyOrderDrink(List<OrderDetail> orderDetails) {
+        OrderDetail firstMenuInfo = orderDetails.get(0);
+        if (isOrderOnce(orderDetails) && Menu.isDrinkMenu(firstMenuInfo.getMenuName())) {
             throw new IllegalArgumentException(ErrorMessage.ORDER_ERROR);
         }
     }
 
-    private static boolean isOrderOnce(List<MenuInfo> orderMenuInfos) {
+    private static boolean isOrderOnce(List<OrderDetail> orderMenuInfos) {
         if (orderMenuInfos.size() == MIN_ORDER_LIMIT) {
             return true;
         }
         return false;
     }
 
-    public List<MenuInfo> getMenuInfos() {
-        return Collections.unmodifiableList(menuInfos);
+    public List<OrderDetail> getMenuInfos() {
+        return Collections.unmodifiableList(orders);
     }
 
     public int getTotalOrderPrice() {
-        int sum = menuInfos.stream()
-                .mapToInt(MenuInfo::price)
+        return orders.stream()
+                .mapToInt(OrderDetail::getOrderPrice)
                 .sum();
-        System.out.println(sum);
-        return sum;
     }
 }

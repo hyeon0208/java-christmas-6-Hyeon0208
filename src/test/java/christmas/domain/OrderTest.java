@@ -2,13 +2,10 @@ package christmas.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
-import christmas.dto.MenuInfo;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.internal.matchers.Or;
 
 class OrderTest {
 
@@ -60,13 +57,13 @@ class OrderTest {
         Order order = Order.from(orderMenu);
 
         // when
-        List<MenuInfo> menuInfos = order.getMenuInfos();
+        List<OrderDetail> menuInfos = order.getMenuInfos();
 
         // then
-        assertThat(menuInfos).extracting(MenuInfo::name)
+        assertThat(menuInfos).extracting(OrderDetail::getMenuName)
                 .containsExactly("해산물파스타", "레드와인", "초코케이크");
 
-        assertThat(menuInfos).extracting(MenuInfo::price)
+        assertThat(menuInfos).extracting(OrderDetail::getQuantity)
                 .containsExactly(2, 1, 1);
     }
 }

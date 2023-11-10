@@ -18,7 +18,7 @@ public class OutputView {
         System.out.println("<주문 메뉴>");
         StringBuilder orderMenus = new StringBuilder();
         order.getMenuInfos().stream()
-                .map(menuInfo -> String.format("%s %s개", menuInfo.name(), menuInfo.price()))
+                .map(orderDetail -> String.format("%s %s개", orderDetail.getMenuName(), orderDetail.getQuantity()))
                 .forEach(menu -> orderMenus.append(menu).append("\n"));
         System.out.println(orderMenus);
     }
