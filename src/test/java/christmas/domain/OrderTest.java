@@ -33,7 +33,7 @@ class OrderTest {
 
     @DisplayName("주문한 메뉴들을 정확히 일치하여 가져오는지 테스트")
     @Test
-    void getMenuInfos() {
+    void getMenuInfosTest() {
         // given
         String orderMenu = "해산물파스타-2,레드와인-1,초코케이크-1";
         Order order = Order.from(orderMenu);
@@ -47,5 +47,20 @@ class OrderTest {
 
         assertThat(menuInfos).extracting(OrderDetail::getQuantity)
                 .containsExactly(2, 1, 1);
+    }
+
+    @DisplayName("주문한 메뉴들의 총 가격을 구한다.")
+    @Test
+    void getTotalOrderPriceTest() {
+        // given
+        String orderMenu = "크리스마스파스타-1,바비큐립-1,제로콜라-2,아이스크림-1";
+        Order order = Order.from(orderMenu);
+
+        // when
+        int totalOrderPrice = order.getTotalOrderPrice();
+        int expectedTotalOrderPrice = 90000;
+
+        // then
+        assertThat(totalOrderPrice).isEqualTo(expectedTotalOrderPrice);
     }
 }
