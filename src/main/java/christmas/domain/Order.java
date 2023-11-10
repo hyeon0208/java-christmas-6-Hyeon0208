@@ -1,7 +1,6 @@
 package christmas.domain;
 
 import christmas.constant.ErrorMessage;
-import christmas.enums.Menu;
 import christmas.util.Convertor;
 import java.util.Arrays;
 import java.util.Collections;

@@ -2,7 +2,6 @@ package christmas.domain;
 
 import christmas.constant.ErrorMessage;
 import christmas.dto.MenuInfo;
-import christmas.enums.Menu;
 import christmas.util.Convertor;
 
 public class OrderDetail {

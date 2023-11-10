@@ -1,4 +1,4 @@
-package christmas.enums;
+package christmas.domain;
 
 import christmas.dto.MenuInfo;
 import java.util.ArrayList;
