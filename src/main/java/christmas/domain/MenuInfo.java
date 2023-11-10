@@ -1,4 +1,4 @@
-package christmas.dto;
+package christmas.domain;
 
 public record MenuInfo(String name, int price) {
 

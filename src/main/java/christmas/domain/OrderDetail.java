@@ -1,7 +1,6 @@
 package christmas.domain;
 
 import christmas.constant.ErrorMessage;
-import christmas.dto.MenuInfo;
 import christmas.util.Convertor;
 
 public class OrderDetail {
