@@ -1,19 +1,21 @@
 package christmas.domain;
 
 import christmas.util.Convertor;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
 
 public class Date {
     private static final int START_DATE = 1;
     private static final int END_DATE = 31;
-    private final int visitDate;
+    private final LocalDate date;
 
-    private Date(int visitDate) {
-        this.visitDate = visitDate;
+    private Date(LocalDate date) {
+        this.date = date;
     }
-
     public static Date from(String input) {
-        int visitDate = Convertor.convertStringToInt(input);
-        validateRange(visitDate);
+        int day = Convertor.convertStringToInt(input);
+        validateRange(day);
+        LocalDate visitDate = LocalDate.of(2023, 12, day);
         return new Date(visitDate);
     }
 
@@ -23,7 +25,12 @@ public class Date {
         }
     }
 
+    public boolean isWeekday() {
+        DayOfWeek dayOfWeek = date.getDayOfWeek();
+        return dayOfWeek != DayOfWeek.FRIDAY && dayOfWeek != DayOfWeek.SATURDAY;
+    }
+
     public int getVisitDate() {
-        return visitDate;
+        return date.getDayOfMonth();
     }
 }
