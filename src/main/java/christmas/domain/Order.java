@@ -9,8 +9,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Order {
-    private static final int MIN_ORDER_LIMIT = 1;
-    private static final int MAX_ORDER_LIMIT = 20;
+    private static final int MIN_ORDER_TOTAL_COUNT_LIMIT = 1;
+    private static final int MAX_ORDER_TOTAL_COUNT_LIMIT = 20;
     private final List<OrderDetail> orders;
 
     private Order(List<OrderDetail> orders) {
@@ -36,10 +36,16 @@ public class Order {
     }
 
     private static void validateOrderCount(List<OrderDetail> orderDetails) {
-        int orderCount = orderDetails.size();
-        if (orderCount < MIN_ORDER_LIMIT || orderCount > MAX_ORDER_LIMIT) {
+        int totalOrderCount = getTotalOrderCount(orderDetails);
+        if (totalOrderCount < MIN_ORDER_TOTAL_COUNT_LIMIT || totalOrderCount > MAX_ORDER_TOTAL_COUNT_LIMIT) {
             throw new IllegalArgumentException(ErrorMessage.ORDER_ERROR);
         }
+    }
+
+    private static int getTotalOrderCount(List<OrderDetail> orderDetails) {
+        return orderDetails.stream()
+                .mapToInt(OrderDetail::getQuantity)
+                .sum();
     }
 
     private static void validateOnlyOrderDrink(List<OrderDetail> orderDetails) {
@@ -50,7 +56,7 @@ public class Order {
     }
 
     private static boolean isOrderOnce(List<OrderDetail> orderMenuInfos) {
-        if (orderMenuInfos.size() == MIN_ORDER_LIMIT) {
+        if (orderMenuInfos.size() == MIN_ORDER_COUNT_LIMIT) {
             return true;
         }
         return false;
