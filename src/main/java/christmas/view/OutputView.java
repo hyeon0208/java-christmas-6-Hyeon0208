@@ -22,4 +22,9 @@ public class OutputView {
                 .forEach(menu -> orderMenus.append(menu).append("\n"));
         System.out.println(orderMenus);
     }
+
+    public void printTotalOrderPrice(Order order) {
+        System.out.println("<할인 전 총주문 금액>");
+        System.out.printf("%,d원\n", order.getTotalOrderPrice());
+    }
 }
