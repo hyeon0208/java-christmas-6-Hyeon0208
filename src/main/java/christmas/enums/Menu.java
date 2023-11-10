@@ -17,16 +17,25 @@ public enum Menu {
         this.menuInfos = menuItems;
     }
 
-    public static boolean isDrinkMenu(String name) {
-        return DRINK.menuInfos.stream()
-                .map(MenuInfo::name)
-                .anyMatch(drinkName -> drinkName.equals(name));
-    }
-
     public static boolean contains(String name) {
         return EnumSet.allOf(Menu.class).stream()
                 .flatMap(menu -> menu.menuInfos.stream())
                 .anyMatch(menuInfo -> menuInfo.nameEquals(name));
+    }
+
+    public static int getPriceOf(String name) {
+        return EnumSet.allOf(Menu.class).stream()
+                .flatMap(menu -> menu.menuInfos.stream())
+                .filter(menuInfo -> menuInfo.nameEquals(name))
+                .map(MenuInfo::price)
+                .findFirst()
+                .orElse(0);
+    }
+
+    public static boolean isDrinkMenu(String name) {
+        return DRINK.menuInfos.stream()
+                .map(MenuInfo::name)
+                .anyMatch(drinkName -> drinkName.equals(name));
     }
 
     private static List<MenuInfo> addMenus(Object... menus) {
