@@ -8,13 +8,13 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class DateTest {
+class VisitDateTest {
 
     @DisplayName("날짜는 1 ~ 31 범위의 날짜만 가질 수 있다.")
     @ParameterizedTest
     @ValueSource(strings = {"0", "32"})
     void initDateTest(String date) {
-        assertThatThrownBy(() -> Date.from(date))
+        assertThatThrownBy(() -> VisitDate.from(date))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -23,7 +23,7 @@ class DateTest {
     @ValueSource(strings = {"1", "2", "8", "9", "15", "16", "22", "23", "29", "30"})
     void isWeekdayTest(String date) {
         // given
-        Date visitDate = Date.from(date);
+        VisitDate visitDate = VisitDate.from(date);
 
         // when
         boolean weekday = visitDate.isWeekday();
@@ -37,7 +37,7 @@ class DateTest {
     @ValueSource(strings = {"3", "10", "17", "24", "25", "31"})
     void isSpecialDayTest(String date) {
         // given
-        Date visitDate = Date.from(date);
+        VisitDate visitDate = VisitDate.from(date);
 
         // when
         boolean specialDay = visitDate.isSpecialDay();
@@ -50,8 +50,8 @@ class DateTest {
     @Test
     void isChristmasDdayTest() {
         // given
-        Date visitDate1 = Date.from("25");
-        Date visitDate2 = Date.from("26");
+        VisitDate visitDate1 = VisitDate.from("25");
+        VisitDate visitDate2 = VisitDate.from("26");
 
         // when
         boolean christmasDday1 = visitDate1.isChristmasDday();
@@ -66,7 +66,7 @@ class DateTest {
     @Test
     void getVisitDateTest() {
         // given
-        Date date = Date.from("3");
+        VisitDate date = VisitDate.from("3");
 
         // when
         int visitDate = date.getVisitDate();
