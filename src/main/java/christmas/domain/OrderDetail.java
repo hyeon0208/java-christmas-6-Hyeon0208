@@ -15,19 +15,30 @@ public class OrderDetail {
         this.quantity = quantity;
     }
 
-    public static OrderDetail of(String[] orderInfo) {
+    public static OrderDetail of(String orderMenu) {
+        String[] orderInfo = Convertor.splitByHyphen(orderMenu);
+        String name = makeValidatedName(orderInfo);
+        int price = Menu.getPriceOf(name);
+        int quantity = makeValidatedQuantity(orderInfo);
+        return new OrderDetail(new MenuInfo(name, price), quantity);
+    }
+
+    private static String makeValidatedName(String[] orderInfo) {
         String name = orderInfo[0];
         validateExistMenu(name);
-        int price = Menu.getPriceOf(name);
-        int quantity = Convertor.convertStringToInt(orderInfo[1]);
-        validateOrderQuantity(quantity);
-        return new OrderDetail(new MenuInfo(name, price), quantity);
+        return name;
     }
 
     private static void validateExistMenu(String name) {
         if (!Menu.contains(name)) {
             throw new IllegalArgumentException(ErrorMessage.ORDER_ERROR);
         }
+    }
+
+    private static int makeValidatedQuantity(String[] orderInfo) {
+        int quantity = Convertor.convertStringToInt(orderInfo[1]);
+        validateOrderQuantity(quantity);
+        return quantity;
     }
 
     private static void validateOrderQuantity(int quantity) {

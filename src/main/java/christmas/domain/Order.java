@@ -19,7 +19,6 @@ public class Order {
 
     public static Order from(String input) {
         List<OrderDetail> orderDetails = Arrays.stream(Convertor.splitByComma(input))
-                .map(Convertor::splitByHyphen)
                 .map(OrderDetail::of)
                 .collect(Collectors.toList());
         validateTotalOrderCount(orderDetails);
