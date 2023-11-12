@@ -10,7 +10,11 @@ public class User {
         this.date = date;
         this.order = order;
     }
-    
+
+    public Payment createPaymentWith(Benefit benefit) {
+        return new Payment(this, benefit);
+    }
+
     public int getTotalOrderPrice() {
         return order.getTotalOrderPrice();
     }
