@@ -16,7 +16,7 @@ public enum Gift {
         this.minOrderPrice = minOrderPrice;
     }
 
-    public static boolean canReceive(int totalOrderPrice) {
+    public static boolean givable(int totalOrderPrice) {
         return EnumSet.allOf(Gift.class).stream()
                 .anyMatch(gift -> totalOrderPrice >= gift.minOrderPrice);
     }
