@@ -21,6 +21,6 @@ class MenuInfoTest {
 
         // then
         assertThat(nameEquals1).isTrue();
-        assertThat(nameEquals2).isTrue();
+        assertThat(nameEquals2).isFalse();
     }
 }
