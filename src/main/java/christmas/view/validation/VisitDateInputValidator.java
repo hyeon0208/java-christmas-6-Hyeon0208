@@ -1,10 +1,9 @@
 package christmas.view.validation;
 
 import christmas.constant.ErrorMessage;
-import java.util.regex.Pattern;
+import christmas.constant.RegexPattern;
 
 public class VisitDateInputValidator {
-    private static final Pattern ONLY_NUMBER = Pattern.compile("\\d+");
 
     private VisitDateInputValidator() {
     }
@@ -15,7 +14,7 @@ public class VisitDateInputValidator {
     }
 
     private static void validateIsNumber(String input) {
-        if (!ONLY_NUMBER.matcher(input).matches()) {
+        if (!RegexPattern.ONLY_NUMBER.matches(input)) {
             throw new IllegalArgumentException(ErrorMessage.VISIT_DATE_ERROR);
         }
     }

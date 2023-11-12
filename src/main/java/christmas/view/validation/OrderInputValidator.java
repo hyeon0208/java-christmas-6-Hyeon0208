@@ -1,12 +1,11 @@
 package christmas.view.validation;
 
 import christmas.constant.ErrorMessage;
+import christmas.constant.RegexPattern;
 import christmas.util.StringConvertor;
 import java.util.Arrays;
-import java.util.regex.Pattern;
 
 public class OrderInputValidator {
-    private static final Pattern ONLY_NUMBER = Pattern.compile("\\d+");
     private static final int ORDER_FORMAT_LIMIT_SIZE = 2;
 
     private OrderInputValidator() {
@@ -47,7 +46,7 @@ public class OrderInputValidator {
 
     private static boolean checkPriceIsNumber(String orderInfo) {
         String price = extractOrderMenuPrice(orderInfo);
-        return ONLY_NUMBER.matcher(price).matches();
+        return RegexPattern.ONLY_NUMBER.matches(price);
     }
 
     private static void validateDuplicateOrder(String[] orderMenus) {
