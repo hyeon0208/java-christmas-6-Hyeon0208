@@ -52,7 +52,7 @@ public class Order {
         return false;
     }
 
-    public List<OrderDetail> getMenuInfos() {
+    public List<OrderDetail> getOrderDetails() {
         return Collections.unmodifiableList(orders);
     }
 
