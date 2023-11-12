@@ -39,7 +39,7 @@ class OrderTest {
         Order order = Order.from(orderMenu);
 
         // when
-        List<OrderDetail> menuInfos = order.getMenuInfos();
+        List<OrderDetail> menuInfos = order.getOrderDetails();
 
         // then
         assertThat(menuInfos).extracting(OrderDetail::getMenuName)

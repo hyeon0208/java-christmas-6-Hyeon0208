@@ -1,7 +1,6 @@
 package christmas.util;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -34,7 +33,7 @@ class StringConvertorTest {
         assertThat(menus).containsExactly("타파스-1", "레드와인-2", "아이스크림-1");
     }
 
-    @DisplayName("하이픈으로 구분된 문자를 바열로 반환한다.")
+    @DisplayName("하이픈으로 구분된 문자를 배열로 반환한다.")
     @Test
     void splitByHyphen() {
         // given

@@ -1,6 +1,5 @@
 package christmas.validation;
 
-
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import christmas.view.validation.VisitDateInputValidator;
