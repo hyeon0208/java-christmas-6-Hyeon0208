@@ -11,11 +11,10 @@ public enum Menu {
     DESSERT(addMenus(new Object[][] {{"초코케이크", 15000}, {"아이스크림", 5000}})),
     DRINK(addMenus(new Object[][] {{"제로콜라", 3000}, {"레드와인", 60000}, {"샴페인", 25000}}));
 
-
     private final List<MenuInfo> menuInfos;
 
-    Menu(List<MenuInfo> menuItems) {
-        this.menuInfos = menuItems;
+    Menu(List<MenuInfo> menuInfos) {
+        this.menuInfos = menuInfos;
     }
 
     public static boolean contains(String name) {
@@ -24,10 +23,10 @@ public enum Menu {
                 .anyMatch(menuInfo -> menuInfo.nameEquals(name));
     }
 
-    public static int getPriceOf(String name) {
+    public static int getPriceOf(OrderMenuName orderMenuName) {
         return EnumSet.allOf(Menu.class).stream()
                 .flatMap(menu -> menu.menuInfos.stream())
-                .filter(menuInfo -> menuInfo.nameEquals(name))
+                .filter(menuInfo -> menuInfo.nameEquals(orderMenuName.getName()))
                 .map(MenuInfo::getPrice)
                 .findFirst()
                 .orElse(0);
