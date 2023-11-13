@@ -40,4 +40,14 @@ class BenefitTest {
                 .containsExactly("크리스마스 디데이 할인", "평일 할인", "증정 이벤트")
                 .hasSize(3);
     }
+
+    @DisplayName("적용받을 수 있는 혜택이 있다.")
+    @Test
+    void isAnyAppliedBenefitTest() {
+        // when
+        boolean anyAppliedBenefit = benefit.isAnyAppliedBenefit();
+
+        // then
+        assertThat(anyAppliedBenefit).isTrue();
+    }
 }
