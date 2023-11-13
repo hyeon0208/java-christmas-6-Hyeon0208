@@ -16,6 +16,13 @@ public class Benefit {
     }
 
     public List<EventInfo> getAppliedBenefit() {
-        return events;
+        return events.stream()
+                .filter(eventInfo -> eventInfo.discountPrice() > 0)
+                .toList();
+    }
+
+    public boolean isAnyAppliedBenefit() {
+        return events.stream()
+                .anyMatch(eventInfo -> eventInfo.discountPrice() > 0);
     }
 }
