@@ -41,7 +41,7 @@
 
 - [x] 사용자가 잘못된 값을 입력할 경우 `IllegalArgumentException`를 발생시키고,
   모든 에러는 "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
-- [] try ~ catch 시 `IllegalArgumentException` 같은 명확한 예외 유형을 처리한다.
+- [x] try ~ catch 시 `IllegalArgumentException` 같은 명확한 예외 유형을 처리한다.
 - [x] 입력과 출력을 담당하는 클래스를 별도로 구현한다. `ex: InputView, OutputView`
 - [x] camp.nextstep.edu.missionutils에서 제공하는 Console API를 사용하여 입력값을 받는다.
 
