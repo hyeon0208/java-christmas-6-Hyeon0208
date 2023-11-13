@@ -2,6 +2,7 @@ package christmas.view;
 
 import christmas.domain.Benefit;
 import christmas.domain.Gift;
+import christmas.domain.Payment;
 import christmas.domain.User;
 import java.util.stream.Collectors;
 
@@ -59,6 +60,12 @@ public class OutputView {
             output = String.format("-%,d원",  benefit.getTotalBenefitPrice());
         }
         System.out.println(output);
+        System.out.println();
+    }
+
+    public void printActualPaymentPrice(Payment payment) {
+        System.out.println("<할인 후 예상 결제 금액>");
+        System.out.printf("%,d원\n", payment.getActualPaymentPrice());
         System.out.println();
     }
 }
