@@ -1,4 +1,4 @@
-package christmas.domain;
+package christmas.domain.user;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
