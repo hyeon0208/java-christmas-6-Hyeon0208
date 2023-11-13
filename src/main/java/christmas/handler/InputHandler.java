@@ -1,7 +1,7 @@
 package christmas.handler;
 
-import christmas.domain.Order;
-import christmas.domain.VisitDate;
+import christmas.domain.user.order.Order;
+import christmas.domain.user.VisitDate;
 import christmas.view.ErrorView;
 import christmas.view.InputView;
 import java.util.function.Function;

@@ -1,4 +1,4 @@
-package christmas.domain;
+package christmas.domain.menu;
 
 public class MenuInfo {
     private String name;

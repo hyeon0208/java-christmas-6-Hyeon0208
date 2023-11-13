@@ -1,6 +1,7 @@
-package christmas.domain;
+package christmas.domain.user.order;
 
 import christmas.constant.ErrorMessage;
+import christmas.domain.menu.Menu;
 import christmas.util.StringConvertor;
 import java.util.Arrays;
 import java.util.Collections;

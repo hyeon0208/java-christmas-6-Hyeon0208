@@ -1,10 +1,10 @@
 package christmas.view;
 
-import christmas.domain.Badge;
-import christmas.domain.Benefit;
-import christmas.domain.Gift;
-import christmas.domain.Payment;
-import christmas.domain.User;
+import christmas.domain.benefit.Badge;
+import christmas.domain.benefit.Benefit;
+import christmas.domain.benefit.Gift;
+import christmas.domain.user.Payment;
+import christmas.domain.user.User;
 import java.util.stream.Collectors;
 
 public class OutputView {

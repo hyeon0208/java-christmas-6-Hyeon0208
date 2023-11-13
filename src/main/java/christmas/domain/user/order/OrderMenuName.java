@@ -1,6 +1,7 @@
-package christmas.domain;
+package christmas.domain.user.order;
 
 import christmas.constant.ErrorMessage;
+import christmas.domain.menu.Menu;
 
 public class OrderMenuName {
     private final String name;

@@ -1,11 +1,11 @@
 package christmas.controller;
 
-import christmas.domain.Benefit;
-import christmas.domain.EventApplicator;
-import christmas.domain.Order;
-import christmas.domain.Payment;
-import christmas.domain.User;
-import christmas.domain.VisitDate;
+import christmas.domain.benefit.Benefit;
+import christmas.domain.benefit.EventApplicator;
+import christmas.domain.user.order.Order;
+import christmas.domain.user.Payment;
+import christmas.domain.user.User;
+import christmas.domain.user.VisitDate;
 import christmas.handler.InputHandler;
 import christmas.view.OutputView;
 

@@ -1,5 +1,6 @@
-package christmas.domain;
+package christmas.domain.user.order;
 
+import christmas.domain.menu.Menu;
 import christmas.util.StringConvertor;
 
 public class OrderDetail {

@@ -1,5 +1,6 @@
-package christmas.domain;
+package christmas.domain.benefit;
 
+import christmas.domain.user.User;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.stream.Collectors;

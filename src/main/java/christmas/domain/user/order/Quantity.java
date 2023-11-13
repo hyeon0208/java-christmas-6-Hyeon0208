@@ -1,4 +1,4 @@
-package christmas.domain;
+package christmas.domain.user.order;
 
 import christmas.constant.ErrorMessage;
 import christmas.util.StringConvertor;

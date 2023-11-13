@@ -1,4 +1,4 @@
-package christmas.domain;
+package christmas.domain.user;
 
 import christmas.util.StringConvertor;
 import java.time.DayOfWeek;

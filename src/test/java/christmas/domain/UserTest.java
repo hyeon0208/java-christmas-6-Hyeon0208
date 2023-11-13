@@ -2,6 +2,10 @@ package christmas.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import christmas.domain.user.order.Order;
+import christmas.domain.user.order.OrderDetail;
+import christmas.domain.user.User;
+import christmas.domain.user.VisitDate;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

@@ -1,5 +1,7 @@
-package christmas.domain;
+package christmas.domain.user;
 
+import christmas.domain.user.order.Order;
+import christmas.domain.user.order.OrderDetail;
 import java.util.List;
 
 public class User {

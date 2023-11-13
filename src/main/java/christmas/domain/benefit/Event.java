@@ -1,4 +1,8 @@
-package christmas.domain;
+package christmas.domain.benefit;
+
+import christmas.domain.user.User;
+import christmas.domain.menu.Menu;
+import christmas.domain.user.order.OrderDetail;
 
 public enum Event {
     CHRISTMAS_D_DAY_EVENT("크리스마스 디데이 할인", 1000) {

@@ -1,4 +1,6 @@
-package christmas.domain;
+package christmas.domain.user;
+
+import christmas.domain.benefit.Benefit;
 
 public class Payment {
     private final User user;
