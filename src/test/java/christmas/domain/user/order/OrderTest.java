@@ -33,7 +33,7 @@ class OrderTest {
 
     @DisplayName("주문한 메뉴들을 정확히 일치하여 가져오는지 테스트")
     @Test
-    void getMenuInfosTest() {
+    void getOrderDetailsTest() {
         // given
         String orderMenu = "해산물파스타-2,레드와인-1,초코케이크-1";
         Order order = Order.from(orderMenu);
