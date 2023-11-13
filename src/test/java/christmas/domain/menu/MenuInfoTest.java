@@ -2,7 +2,6 @@ package christmas.domain.menu;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import christmas.domain.menu.MenuInfo;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

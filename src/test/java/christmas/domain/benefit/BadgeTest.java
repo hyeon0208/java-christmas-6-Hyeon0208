@@ -2,7 +2,6 @@ package christmas.domain.benefit;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import christmas.domain.benefit.Badge;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
