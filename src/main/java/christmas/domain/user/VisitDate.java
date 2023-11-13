@@ -1,5 +1,6 @@
 package christmas.domain.user;
 
+import christmas.constant.ErrorMessage;
 import christmas.util.StringConvertor;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -25,7 +26,7 @@ public class VisitDate {
 
     private static void validateRange(int date) {
         if (date < START_DATE || date > END_DATE) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException(ErrorMessage.VISIT_DATE_ERROR);
         }
     }
 
