@@ -1,9 +1,7 @@
 package christmas.view;
 
-import christmas.domain.Badge;
 import christmas.domain.Benefit;
 import christmas.domain.Gift;
-import christmas.domain.Payment;
 import christmas.domain.User;
 import java.util.stream.Collectors;
 
@@ -49,6 +47,16 @@ public class OutputView {
             output = benefit.getAppliedBenefit().stream()
                     .map(eventInfo -> String.format("%s: -%,d원", eventInfo.name(), eventInfo.discountPrice()))
                     .collect(Collectors.joining("\n"));
+        }
+        System.out.println(output);
+        System.out.println();
+    }
+
+    public void printTotalBenefitPrice(Benefit benefit) {
+        System.out.println("<총혜택 금액>");
+        String output = "0원";
+        if (benefit.isAnyAppliedBenefit()) {
+            output = String.format("-%,d원",  benefit.getTotalBenefitPrice());
         }
         System.out.println(output);
         System.out.println();
