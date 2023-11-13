@@ -9,10 +9,6 @@ public class MenuInfo {
         this.price = price;
     }
 
-    public static MenuInfo of(String menuName, int menuPrice) {
-        return new MenuInfo(menuName, menuPrice);
-    }
-
     public static MenuInfo from(Object[] menuInfo) {
         String menuName = (String) menuInfo[0];
         int menuPrice = (int) menuInfo[1];

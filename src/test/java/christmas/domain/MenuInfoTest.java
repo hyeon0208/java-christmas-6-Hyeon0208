@@ -11,9 +11,8 @@ class MenuInfoTest {
     @Test
     void nameEqualsTest() {
         // given
-        String menuName = "티본스테이크";
-        int menuPrice = 55000;
-        MenuInfo menuInfo = MenuInfo.of(menuName, menuPrice);
+        Object[] menu = new Object[]{"티본스테이크", 55000};
+        MenuInfo menuInfo = MenuInfo.from(menu);
 
         // when
         boolean nameEquals1 = menuInfo.nameEquals("티본스테이크");
