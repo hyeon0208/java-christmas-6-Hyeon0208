@@ -6,6 +6,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class VisitDateTest {
@@ -18,10 +19,23 @@ class VisitDateTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("12월의 금요일,토요일은 주말이다.")
+    @DisplayName("12월의 주말은 false, 평일은 true를 반환한다.")
     @ParameterizedTest
-    @ValueSource(strings = {"1", "2", "8", "9", "15", "16", "22", "23", "29", "30"})
-    void isWeekdayTest(String date) {
+    @CsvSource({
+            "1, false",
+            "2, false",
+            "3, true",
+            "8, false",
+            "9, false",
+            "15, false",
+            "16, false",
+            "22, false",
+            "23, false",
+            "29, false",
+            "30, false",
+            "31, true"
+    })
+    void isWeekdayTest(String date, boolean expected) {
         // given
         VisitDate visitDate = VisitDate.from(date);
 
@@ -29,13 +43,22 @@ class VisitDateTest {
         boolean weekday = visitDate.isWeekday();
 
         // then
-        assertThat(weekday).isFalse();
+        assertThat(weekday).isEqualTo(expected);
     }
 
     @DisplayName("3, 10, 17, 24, 25, 31일는 특별한 날이다.")
     @ParameterizedTest
-    @ValueSource(strings = {"3", "10", "17", "24", "25", "31"})
-    void isSpecialDayTest(String date) {
+    @CsvSource({
+            "3, true",
+            "4, false",
+            "10, true",
+            "16, false",
+            "17, true",
+            "24, true",
+            "25, true",
+            "31, true",
+    })
+    void isSpecialDayTest(String date, boolean expected) {
         // given
         VisitDate visitDate = VisitDate.from(date);
 
@@ -43,23 +66,21 @@ class VisitDateTest {
         boolean specialDay = visitDate.isSpecialDay();
 
         // then
-        assertThat(specialDay).isTrue();
+        assertThat(specialDay).isEqualTo(expected);
     }
 
     @DisplayName("크리스마스 D-day는 25일까지이다.")
-    @Test
-    void isChristmasDdayTest() {
+    @ParameterizedTest
+    @CsvSource({"1, true", "25, true", "26, false"})
+    void isChristmasDdayTest(String date, boolean expected) {
         // given
-        VisitDate visitDate1 = VisitDate.from("25");
-        VisitDate visitDate2 = VisitDate.from("26");
+        VisitDate visitDate1 = VisitDate.from(date);
 
         // when
-        boolean christmasDday1 = visitDate1.isChristmasDday();
-        boolean christmasDday2 = visitDate2.isChristmasDday();
+        boolean christmasDday = visitDate1.isChristmasDday();
 
         // then
-        assertThat(christmasDday1).isTrue();
-        assertThat(christmasDday2).isFalse();
+        assertThat(christmasDday).isEqualTo(expected);
     }
 
     @DisplayName("방문 날짜를 가져온다.")
