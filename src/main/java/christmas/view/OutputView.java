@@ -1,7 +1,7 @@
 package christmas.view;
 
-import christmas.domain.Date;
-import christmas.domain.Order;
+import christmas.domain.Gift;
+import christmas.domain.User;
 
 public class OutputView {
 
@@ -9,22 +9,32 @@ public class OutputView {
         System.out.println("안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.");
     }
 
-    public void printPreviewOfBenefits(Date date) {
-        System.out.printf("12월 %d일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!\n", date.getVisitDate());
+    public void printBenefitPreviewMessageFor(User user) {
+        System.out.printf("12월 %d일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!\n", user.getVisitDate());
         System.out.println();
     }
 
-    public void printMenu(Order order) {
+    public void printMenu(User user) {
         System.out.println("<주문 메뉴>");
         StringBuilder orderMenus = new StringBuilder();
-        order.getMenuInfos().stream()
+        user.getOrderDetails().stream()
                 .map(orderDetail -> String.format("%s %s개", orderDetail.getMenuName(), orderDetail.getQuantity()))
                 .forEach(menu -> orderMenus.append(menu).append("\n"));
         System.out.println(orderMenus);
     }
 
-    public void printTotalOrderPrice(Order order) {
+    public void printTotalOrderPriceFor(User user) {
         System.out.println("<할인 전 총주문 금액>");
-        System.out.printf("%,d원\n", order.getTotalOrderPrice());
+        System.out.printf("%,d원\n", user.getTotalOrderPrice());
+        System.out.println();
+    }
+
+    public void printGiftMenu(User user) {
+        System.out.println("<증정 메뉴>");
+        String output = Gift.findByTotalOrderPrice(user.getTotalOrderPrice())
+                .map(gift -> String.format("%s %d개", gift.getProduct(), gift.getQuantity()))
+                .orElse("없음");
+        System.out.println(output);
+        System.out.println();
     }
 }
