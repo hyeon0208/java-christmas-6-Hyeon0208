@@ -13,7 +13,7 @@ public class OutputView {
         System.out.println("안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.");
     }
 
-    public void printBenefitPreviewMessageFor(User user) {
+    public void printBenefitPreviewMessage(User user) {
         String text = String.format("12월 %d일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!", user.getVisitDate());
         printlnWithNewLine(text);
     }
@@ -26,7 +26,7 @@ public class OutputView {
         printlnWithNewLine(text);
     }
 
-    public void printTotalOrderPriceFor(User user) {
+    public void printTotalOrderPrice(User user) {
         System.out.println("<할인 전 총주문 금액>");
         String text = String.format("%,d원", user.getTotalOrderPrice());
         printlnWithNewLine(text);
@@ -40,7 +40,7 @@ public class OutputView {
         printlnWithNewLine(text);
     }
 
-    public void printBenefitDetails(Benefit benefit) {
+    public void printBenefit(Benefit benefit) {
         System.out.println("<혜택 내역>");
         String text = "없음";
         if (benefit.isAnyAppliedBenefit()) {
@@ -55,7 +55,7 @@ public class OutputView {
         System.out.println("<총혜택 금액>");
         String text = "0원";
         if (benefit.isAnyAppliedBenefit()) {
-            text = String.format("-%,d원",  benefit.getTotalBenefitPrice());
+            text = String.format("-%,d원", benefit.getTotalBenefitPrice());
         }
         printlnWithNewLine(text);
     }
