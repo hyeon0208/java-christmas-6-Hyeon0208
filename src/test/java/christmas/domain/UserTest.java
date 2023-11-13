@@ -52,9 +52,9 @@ class UserTest {
     @DisplayName("회원의 총주문가격이 인자로 받은 가격보다 크거나 같으면 true, 작으면 false를 반환한다.")
     @ParameterizedTest
     @CsvSource({"120000, false", "119000, true"})
-    void isOrderedGeTest(int totalOrderPrice, boolean expected) {
+    void isTotalOrderPriceGreaterOrEqualTest(int totalOrderPrice, boolean expected) {
         // when
-        boolean orderedGe = user.isOrderedGe(totalOrderPrice);
+        boolean orderedGe = user.isTotalOrderPriceGreaterOrEqual(totalOrderPrice);
 
         // then
         assertThat(orderedGe).isEqualTo(expected);

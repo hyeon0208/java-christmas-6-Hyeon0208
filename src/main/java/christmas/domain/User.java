@@ -11,10 +11,6 @@ public class User {
         this.order = order;
     }
 
-    public Payment createPaymentWith(Benefit benefit) {
-        return new Payment(this, benefit);
-    }
-
     public int getTotalOrderPrice() {
         return order.getTotalOrderPrice();
     }
@@ -23,7 +19,7 @@ public class User {
         return order.getOrderDetails();
     }
 
-    public boolean isOrderedGe(int price) {
+    public boolean isTotalOrderPriceGreaterOrEqual(int price) {
         if (order.getTotalOrderPrice() >= price) {
             return true;
         }

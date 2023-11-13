@@ -19,7 +19,7 @@ public class EventApplicator {
     }
 
     private static boolean isMeetConditionsForEvent(User user) {
-        if (user.isOrderedGe(MIN_EVENT_APPLICATION_CONDITIONS)) {
+        if (user.isTotalOrderPriceGreaterOrEqual(MIN_EVENT_APPLICATION_CONDITIONS)) {
             return true;
         }
         return false;
