@@ -16,7 +16,7 @@ public class OrderDetail {
     public static OrderDetail of(String orderMenu) {
         String[] orderInfo = StringConvertor.splitByHyphen(orderMenu);
         OrderMenuName menuName = OrderMenuName.from(orderInfo);
-        int price = Menu.getPriceOf(menuName);
+        int price = Menu.getPriceOf(menuName.getName());
         Quantity quantity = Quantity.from(orderInfo);
         return new OrderDetail(menuName, price, quantity);
     }

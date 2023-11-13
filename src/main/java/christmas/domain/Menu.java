@@ -23,10 +23,10 @@ public enum Menu {
                 .anyMatch(menuInfo -> menuInfo.nameEquals(name));
     }
 
-    public static int getPriceOf(OrderMenuName orderMenuName) {
+    public static int getPriceOf(String name) {
         return EnumSet.allOf(Menu.class).stream()
                 .flatMap(menu -> menu.menuInfos.stream())
-                .filter(menuInfo -> menuInfo.nameEquals(orderMenuName.getName()))
+                .filter(menuInfo -> menuInfo.nameEquals(name))
                 .map(MenuInfo::getPrice)
                 .findFirst()
                 .orElse(0);
