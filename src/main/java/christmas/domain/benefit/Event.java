@@ -57,7 +57,7 @@ public enum Event {
             return SPECIAL_DAY_EVENT.discountPrice;
         }
     },
-    GIFT_EVENT("증정 이벤트", 25000) {
+    GIFT_EVENT("증정 이벤트", 1) {
         @Override
         public boolean isApplicable(User user) {
             return Gift.givable(user.getTotalOrderPrice());
@@ -65,7 +65,8 @@ public enum Event {
 
         @Override
         public int calculateDiscount(User user) {
-            return GIFT_EVENT.discountPrice;
+            int giftPrice = Gift.findPriceByTotalOrderPrice(user.getTotalOrderPrice());
+            return GIFT_EVENT.discountPrice * giftPrice;
         }
     };
 
