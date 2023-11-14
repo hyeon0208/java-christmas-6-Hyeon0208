@@ -10,8 +10,8 @@ import christmas.handler.InputHandler;
 import christmas.view.OutputView;
 
 public class PromotionController {
-    private InputHandler inputHandler;
-    private OutputView outputView;
+    private final InputHandler inputHandler;
+    private final OutputView outputView;
 
     public PromotionController(InputHandler inputHandler, OutputView outputView) {
         this.inputHandler = inputHandler;

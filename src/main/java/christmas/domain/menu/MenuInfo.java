@@ -1,8 +1,8 @@
 package christmas.domain.menu;
 
 public class MenuInfo {
-    private String name;
-    private int price;
+    private final String name;
+    private final int price;
 
     private MenuInfo(String name, int price) {
         this.name = name;
