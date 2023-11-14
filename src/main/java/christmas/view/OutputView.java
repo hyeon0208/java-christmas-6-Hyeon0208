@@ -34,9 +34,11 @@ public class OutputView {
 
     public void printGiftMenu(User user) {
         System.out.println("<증정 메뉴>");
-        String text = Gift.findByTotalOrderPrice(user.getTotalOrderPrice())
-                .map(gift -> String.format("%s %d개", gift.getProduct(), gift.getQuantity()))
-                .orElse("없음");
+        String text = "없음";
+        if (Gift.givable(user.getTotalOrderPrice())) {
+            Gift gift = Gift.findByTotalOrderPrice(user.getTotalOrderPrice());
+            text = String.format("%s %d개", gift.getProduct(), gift.getQuantity());
+        }
         printlnWithNewLine(text);
     }
 
