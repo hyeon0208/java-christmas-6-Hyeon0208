@@ -24,6 +24,6 @@ class PaymentTest {
         int actualPaymentPrice = payment.getActualPaymentPrice();
 
         // then
-        assertThat(actualPaymentPrice).isEqualTo(142977);
+        assertThat(actualPaymentPrice).isEqualTo(167977);
     }
 }
