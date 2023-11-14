@@ -19,7 +19,7 @@ public class Order {
 
     public static Order from(String input) {
         List<OrderDetail> orderDetails = Arrays.stream(StringConvertor.splitByComma(input))
-                .map(OrderDetail::of)
+                .map(OrderDetail::from)
                 .collect(Collectors.toList());
         validateTotalOrderCount(orderDetails);
         validateOnlyOrderDrink(orderDetails);
