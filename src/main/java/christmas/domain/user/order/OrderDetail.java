@@ -1,29 +1,28 @@
 package christmas.domain.user.order;
 
-import christmas.domain.menu.Menu;
 import christmas.util.StringConvertor;
 
 public class OrderDetail {
-    private final OrderMenuName name;
-    private final int price;
+    private final OrderMenuName menuName;
     private final Quantity quantity;
+    private final OrderPrice price;
 
-    public OrderDetail(OrderMenuName name, int price, Quantity quantity) {
-        this.name = name;
-        this.price = price;
+    public OrderDetail(OrderMenuName menuName, Quantity quantity, OrderPrice price) {
+        this.menuName = menuName;
         this.quantity = quantity;
+        this.price = price;
     }
 
     public static OrderDetail of(String orderMenu) {
         String[] orderInfo = StringConvertor.splitByHyphen(orderMenu);
         OrderMenuName menuName = OrderMenuName.from(orderInfo);
-        int price = Menu.getPriceOf(menuName.getName());
         Quantity quantity = Quantity.from(orderInfo);
-        return new OrderDetail(menuName, price, quantity);
+        OrderPrice orderPrice = OrderPrice.of(menuName, quantity);
+        return new OrderDetail(menuName, quantity, orderPrice);
     }
 
     public String getMenuName() {
-        return name.getName();
+        return menuName.getName();
     }
 
     public int getQuantity() {
@@ -31,6 +30,6 @@ public class OrderDetail {
     }
 
     public int getOrderPrice() {
-        return price * quantity.getQuantity();
+        return price.getPrice();
     }
 }
