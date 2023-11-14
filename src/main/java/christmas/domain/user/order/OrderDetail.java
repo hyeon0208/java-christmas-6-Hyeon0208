@@ -13,7 +13,7 @@ public class OrderDetail {
         this.price = price;
     }
 
-    public static OrderDetail of(String orderMenu) {
+    public static OrderDetail from(String orderMenu) {
         String[] orderInfo = StringConvertor.splitByHyphen(orderMenu);
         OrderMenuName menuName = OrderMenuName.from(orderInfo);
         Quantity quantity = Quantity.from(orderInfo);
