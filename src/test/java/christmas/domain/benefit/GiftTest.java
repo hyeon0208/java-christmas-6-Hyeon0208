@@ -27,7 +27,7 @@ class GiftTest {
         int totalOrderPrice = 120000;
 
         // when
-        Gift gift = Gift.findByTotalOrderPrice(totalOrderPrice).get();
+        Gift gift = Gift.findByTotalOrderPrice(totalOrderPrice);
         String product = gift.getProduct();
         int quantity = gift.getQuantity();
 
